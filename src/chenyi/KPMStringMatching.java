@@ -33,12 +33,7 @@ public class KPMStringMatching {
 	public int[] preparePattern(String pattern)
 	{
 		int size = pattern.length();
-		int [] rules = new int[size]; 
-		for(int i=0;i<size;i++)
-		{
-			rules[i] = 0;
-		}
-		
+		int [] rules = new int[size]; 		
 		for(int j = 0,i=1;i<size;)
 		{
 			if(pattern.charAt(j)==pattern.charAt(i))

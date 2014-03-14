@@ -2,78 +2,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.2em;
+}
+</style>
 <script>
-// a globally-scoped variable
-var a=1;
+function makeSizer(size) {
+	  return function() {
+		  var x = 6;alert(x);
+	    document.body.style.fontSize = size + 'px';
+	  };
+	}
 
-// global scope
-function one(){
-    alert(a); 
-}
-
-// local scope
-function two(a){
-    alert(a);
-}
-
-// local scope again
-function three(){
-  var a = 3;
-  alert(a);
-}
-
-// Intermediate: no such thing as block scope in javascript
-function four(){
-    if(true){
-        var a=4;
-    }
-
-    alert(a); // alerts '4', not the global value of '1'
-}
-
-
-// Intermediate: object properties
-function Five(){
-    this.a = 5;
-}
-
-
-// Advanced: closure
-var six = function(){
-    var foo = 6;
-
-    return function(){
-        // javascript "closure" means I have access to foo in here, 
-        // because it is defined in the function in which I was defined.
-        alert(foo);
-    }
-}()
-
-
-// Advanced: prototype-based scope resolution
-function Seven(){
-  this.a = 7;
-}
-
-// [object].prototype.property loses to [object].property in the lookup chain
-Seven.prototype.a = -1; // won't get reached, because 'a' is set in the constructor above.
-Seven.prototype.b = 8; // Will get reached, even though 'b' is NOT set in the constructor.
-
-
-
-// These will print 1-8
-one();
-two(2);
-three();
-four();
-alert(new Five().a);
-six();
-alert(new Seven().a);
-alert(new Seven().b);
+	var size12 = makeSizer(12);
+	var size14 = makeSizer(14);
+	var size16 = makeSizer(16);
+	document.getElementById('size-12').onclick = size12;
+	document.getElementById('size-14').onclick = size14;
+	document.getElementById('size-16').onclick = size16;
 </script>
+
 <title>Insert title here</title>
 </head>
 <body>
-
+    <p>Some paragraph text</p>
+    <h1>some heading 1 text</h1>
+    <h2>some heading 2 text</h2>
+<a href="#" id="size-12">12</a>
+<a href="#" id="size-14">14</a>
+<a href="#" id="size-16">16</a>
 </body>
 </html>
